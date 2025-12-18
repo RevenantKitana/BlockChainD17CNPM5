@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Board - Blockchain DApp</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📝 Message Board DApp</h1>
+            <p class="subtitle">Ứng dụng phi tập trung trên Blockchain</p>
+        </header>
+
+        <!-- Phần kết nối ví -->
+        <div class="wallet-section">
+            <button id="connectWallet" class="btn btn-primary">
+                🦊 Kết nối MetaMask
+            </button>
+            <div id="walletInfo" class="wallet-info hidden">
+                <p><strong>Địa chỉ ví:</strong> <span id="walletAddress"></span></p>
+                <p><strong>Mạng:</strong> <span id="networkName"></span></p>
+            </div>
+        </div>
+
+        <!-- Phần gửi tin nhắn -->
+        <div class="message-form" id="messageForm" style="display: none;">
+            <h2>📨 Gửi Tin Nhắn</h2>
+            <textarea 
+                id="messageContent" 
+                placeholder="Nhập nội dung tin nhắn (tối đa 500 ký tự)..." 
+                maxlength="500"
+                rows="4"
+            ></textarea>
+            <div class="char-count">
+                <span id="charCount">0</span> / 500 ký tự
+            </div>
+            <button id="sendMessage" class="btn btn-success">
+                ✉️ Gửi Tin Nhắn
+            </button>
+        </div>
+
+        <!-- Thống kê -->
+        <div class="stats" id="stats" style="display: none;">
+            <div class="stat-item">
+                <span class="stat-label">Tổng số tin nhắn:</span>
+                <span class="stat-value" id="totalMessages">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Tin nhắn của tôi:</span>
+                <span class="stat-value" id="myMessages">0</span>
+            </div>
+        </div>
+
+        <!-- Danh sách tin nhắn -->
+        <div class="messages-section" id="messagesSection" style="display: none;">
+            <div class="messages-header">
+                <h2>💬 Danh Sách Tin Nhắn</h2>
+                <button id="refreshMessages" class="btn btn-secondary">
+                    🔄 Làm mới
+                </button>
+            </div>
+            <div id="messagesList" class="messages-list">
+                <!-- Tin nhắn sẽ được hiển thị ở đây -->
+            </div>
+        </div>
+
+        <!-- Loading indicator -->
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Đang xử lý...</p>
+        </div>
+
+        <!-- Thông báo -->
+        <div id="notification" class="notification hidden"></div>
+    </div>
+
+    <!-- Modal cài đặt MetaMask -->
+    <div id="metamaskModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🦊 Cần cài đặt MetaMask</h2>
+            </div>
+            <div class="modal-body">
+                <p>Để sử dụng ứng dụng này, bạn cần cài đặt MetaMask - một ví điện tử cho Ethereum.</p>
+                
+                <div class="install-steps">
+                    <h3>📝 Nếu chưa cài đặt:</h3>
+                    <ol>
+                        <li>Truy cập trang chủ MetaMask</li>
+                        <li>Tải extension cho trình duyệt của bạn</li>
+                        <li>Làm theo hướng dẫn để tạo ví mới</li>
+                        <li>Click "Tôi đã cài MetaMask" bên dưới</li>
+                    </ol>
+
+                    <h3 style="margin-top: 20px;">✅ Nếu đã cài đặt rồi:</h3>
+                    <ul style="list-style: none; padding-left: 0;">
+                        <li style="margin: 10px 0;">1️⃣ Kiểm tra extension có được <strong>enable</strong> không</li>
+                        <li style="margin: 10px 0;">2️⃣ Click vào biểu tượng 🧩 (Extensions) trên thanh công cụ</li>
+                        <li style="margin: 10px 0;">3️⃣ Tìm MetaMask và bật nó lên</li>
+                        <li style="margin: 10px 0;">4️⃣ Click nút "Tôi đã cài MetaMask" bên dưới</li>
+                    </ul>
+                </div>
+
+                <div class="modal-actions">
+                    <button id="retryMetaMask" class="btn btn-success">
+                        ✅ Tôi đã cài MetaMask
+                    </button>
+                    <a href="https://metamask.io/download/" target="_blank" class="btn btn-primary">
+                        🔗 Tải MetaMask
+                    </a>
+                    <button id="closeModal" class="btn btn-secondary">
+                        Đóng
+                    </button>
+                </div>
+
+                <div class="install-note">
+                    <small>💡 <strong>Lưu ý:</strong> MetaMask cần vài giây để khởi động sau khi enable extension.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Powered by Ethereum & Solidity | Made with ❤️</p>
+    </footer>
+
+    <!-- Import ethers.js local -->
+    <script src="ethers.min.js"></script>
+    
+    <!-- Import config và ABI -->
+    <script src="config.js"></script>
+    
+    <!-- Import app.js -->
+    <script src="app.js"></script>
+</body>
+</html>

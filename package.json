@@ -1,0 +1,27 @@
+{
+  "name": "blockchain-message-board",
+  "version": "1.0.0",
+  "description": "Dự án blockchain với smart contract và frontend đơn giản",
+  "main": "index.js",
+  "scripts": {
+    "compile": "hardhat compile",
+    "deploy": "hardhat run scripts/deploy.js --network localhost",
+    "test": "hardhat test",
+    "node": "hardhat node"
+  },
+  "keywords": [
+    "blockchain",
+    "solidity",
+    "smart-contract",
+    "ethereum"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "hardhat": "^2.19.0"
+  },
+  "dependencies": {
+    "ethers": "^6.16.0"
+  }
+}
